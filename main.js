@@ -25,6 +25,9 @@
     },
     orientationDetection: function () {
       var orientation = config.orientation;
+      if (document.documentElement["clientHeight"] < document.documentElement["clientWidth"]) {
+        return this.resourceLoad();
+      }
       if (!Tiny.isUndefined(window.orientation) && orientation === 1 && Math.abs(window.orientation / 90) != 1) {
         //横屏
       } else if (!Tiny.isUndefined(window.orientation) && orientation === 0 && Math.abs(window.orientation / 90) != 0) {
