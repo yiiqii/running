@@ -40,10 +40,10 @@ var StartLayer = function () {
 
   var self = this;
   //键盘控制
-  var keySpace = new Tiny.KeyboardManager(32);
-  var commandSpace = new Tiny.KeyboardManager(91);
-  var homeSpace = new Tiny.KeyboardManager(82);
-  var selectSpace = new Tiny.KeyboardManager(23);
+  var keySpace = new Tiny.Keyboard(32);
+  var commandSpace = new Tiny.Keyboard(91);
+  var homeSpace = new Tiny.Keyboard(82);
+  var selectSpace = new Tiny.Keyboard(23);
   this._view._container.mousedown = this._view._container.touchstart = keySpace.press = selectSpace.press = function (e) {
     self._onTouchStart();
   };
