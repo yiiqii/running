@@ -16,25 +16,9 @@
     init: function () {
       console.log('init');
 
-      var self = this;
-      this.orientationChangeHandle = function () {
-        self.orientationDetection();
-      };
-      window.addEventListener('orientationchange', this.orientationChangeHandle, false);
-      this.orientationDetection();
-    },
-    orientationDetection: function () {
-      var orientation = config.orientation;
-      if (!Tiny.isUndefined(window.orientation) && orientation === 1 && Math.abs(window.orientation / 90) != 1) {
-        //横屏
-      } else if (!Tiny.isUndefined(window.orientation) && orientation === 0 && Math.abs(window.orientation / 90) != 0) {
-        //竖屏
-      } else {
-        this.resourceLoad();
-      }
+      this.resourceLoad();
     },
     resourceLoad: function () {
-      var self = this;
       var resources = [];
       for (var key in RESOURCES) {
         resources.push(RESOURCES[key]);
@@ -57,7 +41,6 @@
           var body = document.body;
           body.removeChild(percent);
           body.removeChild(progress.parentNode);
-          window.removeEventListener('orientationchange', self.orientationChangeHandle);
 
           Tiny.app.run(new StartLayer());
         }
@@ -65,4 +48,9 @@
     }
   };
   main.init();
+
+  window.addEventListener('resize', function () {
+    Tiny.app.resize();
+    console.log('resize');
+  }, false);
 })();
